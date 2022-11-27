@@ -1,22 +1,65 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Type Ahead 👀</title>
-  <link rel="stylesheet" href="style.css">
-</head>
-<body>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Type Ahead 👀</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <form class="search-form">
+      <input type="text" class="search" placeholder="City or State" />
+      <ul class="suggestions">
+        <li>Filter for a city</li>
+        <li>or a state</li>
+      </ul>
+    </form>
+    <script>
+      const endpoint =
+        "https://gist.githubusercontent.com/Miserlou/c5cd8364bf9b2420bb29/raw/2bf258763cdddd704f8ffd3ea9a3e81d25e2c6f6/cities.json";
+      let cities = [];
+      async function dsaf() {
+        let json = await fetch(endpoint);
+        console.log(json);
+        let res = await json.json();
+        console.log(res);
+        return res;
+        // cities = res;
+        // json.then((data) => console.log(data));
+      }
+      let a = dsaf();
+      a.then((data) => console.log(data));
+      console.log(a);
+      function foo() {
+        return new Promise((resolve, reject) => {
+          resolve("hello world!");
+        });
+      }
 
-  <form class="search-form">
-    <input type="text" class="search" placeholder="City or State">
-    <ul class="suggestions">
-      <li>Filter for a city</li>
-      <li>or a state</li>
-    </ul>
-  </form>
-<script>
-const endpoint = 'https://gist.githubusercontent.com/Miserlou/c5cd8364bf9b2420bb29/raw/2bf258763cdddd704f8ffd3ea9a3e81d25e2c6f6/cities.json';
+      p = foo();
+      p.then((result) => console.log(result)); // "hello world!"
 
-</script>
-</body>
+      fetch(endpoint)
+        .then((blob) => blob.text())
+        .then((data) => (cities = data));
+      // console.log(cities);
+
+      let suggestions = document.querySelector(".suggestions");
+      let li = document.createElement("li");
+      li.innerText = "dfsadf";
+      suggestions.appendChild(li);
+
+      function findMatches(wordToMatch, cities) {
+        return cities.filter((place) => {
+          // here we need to figure out if the city or state matches what was searched
+          const regex = new RegExp(wordToMatch, "gi");
+          console.log(place);
+          return place.city.match(regex) || place.state.match(regex);
+        });
+      }
+      // console.log(text);
+      // console.log(cities);
+      let input = document.querySelector(".search");
+      input.addEventListener("input", findMatches);
+    </script>
+  </body>
 </html>
