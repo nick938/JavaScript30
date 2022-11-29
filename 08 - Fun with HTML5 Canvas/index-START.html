@@ -1,18 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>HTML5 Canvas</title>
+    <meta charset="UTF-8">
+    <title>HTML5 Canvas</title>
 </head>
 <body>
 <canvas id="draw" width="800" height="800"></canvas>
 <script>
+    let canvas = document.getElementById('draw')
+    let ctx = canvas.getContext('2d')
+    ctx.fillStyle = 'green'
+    ctx.fillRect(10, 10, 150, 100)
 </script>
 
 <style>
-  html, body {
-    margin: 0;
-  }
+    html, body {
+        margin: 0;
+    }
 </style>
 
 </body>
