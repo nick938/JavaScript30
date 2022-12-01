@@ -1,0 +1,18 @@
+{
+    "compilerOptions": {
+        "module": "ES2022",
+        "target": "esnext",
+        "noImplicitAny": true,
+        "removeComments": true,
+        "preserveConstEnums": true,
+        // "outFile": "../../built/local/tsc.js",
+        "sourceMap": true
+    },
+    "include": [
+        "asy.ts"
+    ],
+    "exclude": [
+        "node_modules",
+        "**/*.spec.ts"
+    ]
+}
