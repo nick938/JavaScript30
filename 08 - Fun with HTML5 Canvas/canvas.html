@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<meta charset="utf-8" />
+<div style="border: 1px solid #eee">
+  <canvas id="canvas-1" width="500" height="300"> </canvas>
+  <canvas id="canvas-2" width="500" height="300"> </canvas>
+  <br />
+  &nbsp;&nbsp;&nbsp;<input type="button" value="播放" id="play" />
+  <input type="button" value="暂停" id="stop" />
+  <br /><br />
+</div>
+<script>
+  var timer = null;
+  var video = document.createElement("video");
+  var canvas = document.getElementById("canvas-1");
+  var canvas2 = document.getElementById("canvas-2");
+  var ctx = canvas.getContext("2d");
+  var ctx2 = canvas2.getContext("2d");
+  let image = new Image();
+
+  function drawTip(text) {
+    canvas.width = canvas.width;
+    canvas.height = canvas.height;
+    ctx.font = "24px Microsoft YaHei";
+    ctx.textAlign = "center";
+    ctx.textBaseline = "middle";
+    ctx.fillText(text, canvas.width / 2, canvas.height / 2);
+  }
+
+  function init() {
+    drawTip("正在缓冲中....");
+    video.src = "./清华大学 - Twitter Search _ Twitter_2.mp4";
+  }
+
+  video.oncanplay = function () {
+    drawTip("加载完毕，开始播放");
+  };
+
+  function play() {
+    init();
+    video.play();
+    timer = setInterval(function () {
+      if (video.currentTime >= video.duration) {
+        stop();
+      }
+      ctx.drawImage(
+        video,
+        (canvas.width - video.videoWidth) / 2,
+        (canvas.height - video.videoHeight) / 2,
+        video.videoWidth,
+        video.videoHeight
+      ); //绘制视频
+    }, 16); //每16ms绘制一次画面
+  }
+
+  function stop() {
+    clearInterval(timer);
+    video.pause();
+  }
+
+  drawTip("你可以点击播放按钮播放视频....");
+  document.getElementById("play").onclick = function () {
+    play();
+  };
+  document.getElementById("stop").onclick = function () {
+    stop();
+  };
+  image.scr = "./屏幕截图_20221205_151340.png";
+  image.onload = function () {
+    console.log(1);
+    ctx2.drawImage(image, 0, 0);
+  };
+  // console.log(image);
+</script>

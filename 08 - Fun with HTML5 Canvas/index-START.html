@@ -3,16 +3,29 @@
   <head>
     <meta charset="UTF-8" />
     <title>HTML5 Canvas</title>
-    <script src="./asy.js" defer></script>
+    <script src="./asy.js"></script>
   </head>
-  <body>
-    <canvas id="draw" width="800" height="800"></canvas>
-    <script></script>
-
+  <body onload="draw()">
+    <canvas id="canvas" width="500" height="500"></canvas>
+    <canvas id="canvas1" width="500" height="500"></canvas>
+    <input type="button" value="播放" id="play" />
+    <input type="button" value="暂停" id="stop" />
+    <video
+      id="myvideo"
+      controls
+      src="./hello-world - Google Chrome 2022-11-02 20-58-59.mp4"
+      height="500px"
+      width="500px"
+      hidden
+    ></video>
+    <!-- <img src="./屏幕截图_20221205_151340.png" alt="" srcset=""> -->
     <style>
       html,
       body {
         margin: 0;
+        height: 1080px;
+        width: 1920px;
+        overflow: auto;
       }
     </style>
   </body>
