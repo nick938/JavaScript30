@@ -1,12 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Key Detection</title>
-  <script type="text/javascript" src="https://www.cornify.com/js/cornify.js"></script>
-</head>
-<body>
-<script>
-</script>
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Key Detection</title>
+    <script
+      type="text/javascript"
+      src="https://www.cornify.com/js/cornify.js"
+    ></script>
+  </head>
+  <body>
+    <a href="#" onclick="cornify_add();return false;">Click for happiness!</a>
+    <script>
+      let sequence = [];
+
+      window.onkeyup = (e) => {
+        console.log(e.key);
+        if (sequence.length < 6) {
+          sequence.push(e.key);
+        } else {
+          sequence.shift();
+          sequence.push(e.key);
+        }
+        console.log(sequence);
+      };
+    </script>
+  </body>
 </html>
