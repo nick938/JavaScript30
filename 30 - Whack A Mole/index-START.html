@@ -39,8 +39,30 @@
       const holes = document.querySelectorAll(".hole");
       const scoreBoard = document.querySelector(".score");
       const moles = document.querySelectorAll(".mole");
+      // 先让地鼠上来
+      // 点击地鼠让它下去
+      // 1.一定时间内
+      // 2.地鼠一个接一个起来
+      let btn = document.querySelector("button");
+      moles.forEach((mole) => mole.addEventListener("click", handMole));
+      function startGame() {
+        let random = Math.round(Math.random() * 6 + 1);
+        let randomMole = document.querySelector(`.hole${random} .mole`);
 
-      
+        randomMole.style.top = 0;
+        setTimeout(() => {
+          randomMole.style.top = "100%";
+        }, 5000);
+
+        setTimeout(() => {
+          moles.forEach((mole) => (mole.style.top = "100%"));
+          clearInterval(timer);
+        }, 10 * 1000);
+      }
+      function handMole() {
+        this.style.top = "100%";
+      }
+      // btn.addEventListener("click", start);
     </script>
   </body>
 </html>
